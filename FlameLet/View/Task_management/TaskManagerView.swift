@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TaskManagerView: View {
-    @StateObject var taskManager = TaskManager()
-    @StateObject var projectManager = ProjectManager()
+
+    @EnvironmentObject var taskManager: TaskManager
+    @EnvironmentObject var projectManager: ProjectManager
 
     @State var currentDate:Date = Date()
     @State var showCalendar:Bool = false
@@ -38,6 +39,8 @@ struct TaskManagerView: View {
                 }
       
                 Spacer()
+                Spacer()
+                
                 HStack{
                     Spacer()
                     TaskAchievementsView()
@@ -49,7 +52,7 @@ struct TaskManagerView: View {
                 }
 
                 Spacer()
-                
+            
                 HStack{
                     Spacer()
                     VStack{
@@ -67,7 +70,7 @@ struct TaskManagerView: View {
                                     showCalendar.toggle()
                                 }
                         }
-                        .offset(y:-20)
+//                        .offset(y:-20)
                         
                         
                         Text("Looking back at previous achievements.")

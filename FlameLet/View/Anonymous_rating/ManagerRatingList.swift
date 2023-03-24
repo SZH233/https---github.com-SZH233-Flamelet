@@ -24,7 +24,6 @@ struct ManagerRatingList: View {
 //            .onAppear(perform: managerViewModel.loadData)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Anonymous Employer Rater")
-
         }
         
     }

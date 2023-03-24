@@ -10,6 +10,7 @@ import SwiftUI
 struct ShareTime: View {
     @EnvironmentObject var forum: Forum
     @EnvironmentObject var forum2: TreeHoleForum
+    @EnvironmentObject private var login:loginViewModel
     @State var ispresented = false
 
     var body: some View {
@@ -41,8 +42,7 @@ struct ShareTime: View {
     func toDetailPage(page: PostPage) {
         if let window = UIApplication.shared.windows.first
         {
-            window.rootViewController = UIHostingController(rootView: PostDetail(page: page).environmentObject(forum)
-                                                                            .environmentObject(forum2))
+            window.rootViewController = UIHostingController(rootView: PostDetail(page: page).environmentObject(forum).environmentObject(login).environmentObject(forum2))
             window.makeKeyAndVisible()
         }
     }

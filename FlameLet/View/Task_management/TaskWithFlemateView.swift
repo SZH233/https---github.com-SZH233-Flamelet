@@ -74,7 +74,7 @@ struct TaskWithFlemateView: View {
                     }
                     .frame(width:.infinity, height: 250, alignment: .leading)
                     
-                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(.gray, lineWidth:2))
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.ui.LoginColor, lineWidth:2))
                     
 
                     FlameLetView(sentenceIndex: $sentenceIndex,bigger: $bigger)
@@ -83,13 +83,14 @@ struct TaskWithFlemateView: View {
                         .onTapGesture {
                             bigger.toggle()
                         }
-        //                .shadow(color: .orange, radius: 5, x: -3, y: 1)
+
                     
                     
                 }
                 Spacer()
             }
         }
+        .padding(.top,40)
         
         
         
@@ -97,18 +98,18 @@ struct TaskWithFlemateView: View {
     
     @ViewBuilder
     func showTask()->some View{
-//        List {
+
             ForEach(taskManager.tasks){ task in
                 if taskManager.isSameDay(date1: task.taskDate, date2: currentDate){
                     SingleTaskView(task: task)
                     //press task to modify the completed state
                         .onTapGesture {
                             taskManager.updateTask(id: task.id, complete: !task.complete)
-//                            if task.complete{
-                                sentenceIndex = Int(arc4random() % 10)
-//                            }
+
+                            sentenceIndex = Int(arc4random() % 10)
+
                             
-                                                    }
+                        }
                     //press task for 0.1 second, the task will be deleted
                         .onLongPressGesture(minimumDuration: 0.1) {
                             
@@ -121,7 +122,7 @@ struct TaskWithFlemateView: View {
     
     @ViewBuilder
     func showProject()->some View{
-//        List {
+
         ForEach(projectManager.projects){ project in
             let show = projectManager.withinDuration(currentDate: currentDate, startDate: project.startDate, dueDate: project.endDate)
             if show{
@@ -129,6 +130,7 @@ struct TaskWithFlemateView: View {
                 //press task to modify the completed state
                     .onTapGesture {
                         projectManager.updateProject(id: project.id, complete: !project.complete)
+                        sentenceIndex = Int(arc4random() % 10)
                     }
                 //press task for 0.1 second, the task will be deleted
                     .onLongPressGesture(minimumDuration: 0.1) {

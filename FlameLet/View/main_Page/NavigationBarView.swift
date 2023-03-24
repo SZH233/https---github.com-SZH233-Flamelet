@@ -71,7 +71,7 @@ struct NavigationBarView: View {
             
             if home{
                 Color.white.edgesIgnoringSafeArea(.all)
-                HomeView()
+                MainPage()
             }
             
             if rator{

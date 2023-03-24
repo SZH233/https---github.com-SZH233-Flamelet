@@ -12,6 +12,7 @@ struct PostDetailTreeHole: View {
     var page: PostPage
     @EnvironmentObject var forum1: TreeHoleForum
     @EnvironmentObject var forum2: Forum
+    @EnvironmentObject private var login:loginViewModel
     @State var ispresented = false
     @State var tab: Int = 2
 //    @EnvironmentObject var page: PostPage
@@ -59,7 +60,7 @@ struct PostDetailTreeHole: View {
     func toListPage() {
         if let window = UIApplication.shared.windows.first
         {
-            window.rootViewController = UIHostingController(rootView: Home(showingTab: $tab))
+            window.rootViewController = UIHostingController(rootView: Home(showingTab: $tab).environmentObject(login))
             window.makeKeyAndVisible()
         }
     }

@@ -50,6 +50,7 @@ struct ManagerView: View {
             .offset(x:8)
             
         }
+        
 
     }
 

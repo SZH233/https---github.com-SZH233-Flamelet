@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct UserInfo: View {
+//    var manager: Manager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image("ID5")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
+                .frame(width: 100, height: 100)
+            VStack {
+                Text("Hello, Flora")
+                Text("Well done today!")
+            }
+            .padding(.leading, 20)
+        }
+        .padding(10)
+        VStack {
+//            TaskWithFlemateView()
+            Rectangle()
+                .frame(width: 300, height: 100, alignment: .center)
+                .cornerRadius(20)
+        }
+        
     }
 }
 

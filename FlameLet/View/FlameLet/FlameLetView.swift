@@ -10,7 +10,7 @@ import SwiftUI
 struct FlameLetView: View {
     @Binding var sentenceIndex:Int
     @Binding var bigger:Bool
-    var sentence:[String] = [" ", "1111111", "2222222", "33333333", "44444444", "555555555", "666666666", "77777777", "888888888", "9999999" ,"100000000"]
+    var sentence:[String] = [" ", "You did a great job. I will let others know", "You are awesome! Never forget that.", "You've completed a task. Reward yourself with a break.", "You can accomplish anything that you put your mind to", "You are perfect just the way you are.", "Everything you do is with excellence.", "You are an incredible human", "Don't forget to take a break", "I am so proud of you." ,"You deserve a hug right now."]
     var body: some View {
         
         TimelineView(.animation){ timeline in
@@ -20,9 +20,12 @@ struct FlameLetView: View {
             
             let angle2 = Angle.degrees(now.remainder(dividingBy: 6)*15)
             let x2 = cos(angle2.radians)
+            
             withAnimation(.linear(duration: 4)){
                 Text("\(sentence[sentenceIndex])")
-                    .offset(x:60, y:10)
+                    .frame(width: 300,height: 60)
+                    .lineLimit(3)
+                    .offset(x:150, y:20)
             }
             
             

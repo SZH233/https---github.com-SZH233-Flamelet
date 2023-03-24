@@ -151,45 +151,13 @@ struct CalendarView: View {
         .frame(height: 50, alignment: .top)
     }
     
-//    @ViewBuilder
-//    func cardView(value: CalendarDate)->some View{
-//        VStack{
-//            if value.day != -1{
-//
-//                //if tasks date is same with current printing date in the calender, add pink point under the date
-//                if let task = taskManager.tasks.first(where: { task in
-//                    return taskManager.isSameDay(date1: task.taskDate, date2: value.date)
-//                }){
-//                    Text("\(value.day)")
-//                        .font(.title3.bold())
-//                        .foregroundColor(taskManager.isSameDay(date1: task.taskDate, date2: currentDate) ? .white : .primary)
-//                        .frame(maxWidth:.infinity)
-//
-//                    Spacer()
-//
-//                    Circle()
-//                        .fill(taskManager.isSameDay(date1: task.taskDate, date2: currentDate) ? .white : .pink)
-//                        .frame(width: 8, height: 8)
-//                }else{
-//                    Text("\(value.day)")
-//                        .font(.title3.bold())
-//                        .foregroundColor(taskManager.isSameDay(date1:value.date, date2: currentDate) ? .white : .primary)
-//                        .frame(maxWidth:.infinity)
-//                    Spacer()
-//                }
-//            }
-//        }
-//        .padding(.vertical, 9)
-//        .frame(height: 50, alignment: .top)
-//    }
-//
     @ViewBuilder
     func showTask()->some View{
-//        List {
+
             ForEach(taskManager.tasks){ task in
                 if taskManager.isSameDay(date1: task.taskDate, date2: currentDate){
                     SingleTaskView(task: task)
-                        .background(.gray)
+//                        .background(.gray)
                     //press task to modify the completed state
                         .onTapGesture {
                             taskManager.updateTask(id: task.id, complete: !task.complete)
@@ -212,7 +180,7 @@ struct CalendarView: View {
             let show = projectManager.withinDuration(currentDate: currentDate, startDate: project.startDate, dueDate: project.endDate)
             if show{
                 SingleProjectView(project: project)
-                    .background(.gray)
+//                    .background(.gray)
                 //press task to modify the completed state
                     .onTapGesture {
                         projectManager.updateProject(id: project.id, complete: !project.complete)

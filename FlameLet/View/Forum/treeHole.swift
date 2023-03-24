@@ -10,6 +10,7 @@ import SwiftUI
 struct TreeHole: View {
     @EnvironmentObject var forum: TreeHoleForum
     @EnvironmentObject var forum2: Forum
+    @EnvironmentObject private var login:loginViewModel
     @State var ispresented = false
 
     var body: some View {
@@ -42,7 +43,7 @@ struct TreeHole: View {
     func toDetailPage(page: PostPage) {
         if let window = UIApplication.shared.windows.first
         {
-            window.rootViewController = UIHostingController(rootView: PostDetailTreeHole(page: page).environmentObject(forum).environmentObject(forum2))
+            window.rootViewController = UIHostingController(rootView: PostDetailTreeHole(page: page).environmentObject(forum).environmentObject(forum2).environmentObject(login))
             window.makeKeyAndVisible()
         }
     }

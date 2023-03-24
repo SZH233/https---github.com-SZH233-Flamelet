@@ -13,11 +13,6 @@ class loginViewModel:ObservableObject{
     @Published var currentUser:Manager?
     @Published var loginStatus:Int = 0
     
-//    init(){
-//
-//    }
-    
-    
     
     func hashcode(password: String) -> Int {
         var result = 0;

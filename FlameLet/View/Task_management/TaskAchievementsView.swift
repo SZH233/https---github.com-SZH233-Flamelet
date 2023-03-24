@@ -10,7 +10,7 @@ import SwiftUI
 struct TaskAchievementsView: View {
     @EnvironmentObject var taskManager:TaskManager
     @EnvironmentObject var projectManager:ProjectManager
-    
+
     var body: some View {
         
         VStack{
@@ -60,5 +60,7 @@ struct TaskAchievementsView: View {
 
 struct TaskAchievementsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()    }
+        ContentView()
+        
+    }
 }

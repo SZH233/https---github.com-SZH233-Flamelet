@@ -13,7 +13,8 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var emailValid: Bool = true
     @State private var passwordValid: Bool = true
-    
+    @State private var showHomePage:Bool = false
+    @State var tab: Int = 1
     var body: some View {
         ZStack {
             Color.ui.FlameOrange
@@ -87,18 +88,17 @@ struct LoginView: View {
                         self.password = ""
                     }
                     
-                
+                    
                     if self.passwordValid && self.emailValid{
                         
                        
                         login.verifyInfo(userName: email, password: password)
                         
                         
-                        
                     }
                     
                             if(login.currentUser?.name != nil) {
-                                print("成功了！")
+                                self.showHomePage = true
                             }
 
                     
@@ -115,7 +115,16 @@ struct LoginView: View {
             }
             .frame(height: 500.0)
             .offset(y: -120)
+            
+            
+            if showHomePage{
+                Color.white.edgesIgnoringSafeArea(.all)
+                Home(showingTab: $tab)
+                    .environmentObject(login)
+            }
         }
+        
+        
     }
     
     func isValidEmail(_ email: String) -> Bool {

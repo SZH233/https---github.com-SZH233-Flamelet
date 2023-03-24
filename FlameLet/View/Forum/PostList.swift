@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 struct PostList: View {
-    @StateObject var shareTime:Forum = Forum()
-    @StateObject var treeHole: TreeHoleForum = TreeHoleForum()
-//    @EnvironmentObject var shareTime: Forum
-//    @EnvironmentObject var treeHole: TreeHoleForum
+//    @StateObject var shareTime:Forum = Forum()
+//    @StateObject var treeHole: TreeHoleForum = TreeHoleForum()
+    @EnvironmentObject var shareTime: Forum
+    @EnvironmentObject var treeHole: TreeHoleForum
+    @EnvironmentObject private var login:loginViewModel
     @State var ispresented = false
     @State var offsetX = CGFloat(-80)
     
@@ -43,13 +44,15 @@ struct PostList: View {
                         .offset(x: offsetX, y: -18)
                 }
                 TabView {
-                    ShareTime()
-                        .environmentObject(shareTime)
+                    ShareTime().environmentObject(shareTime)
+                        .environmentObject(treeHole)
+                        .environmentObject(login)
                         .onAppear(perform: {
                             offsetX = -80
                         })
-                    TreeHole()
-                        .environmentObject(treeHole)
+                    TreeHole().environmentObject(treeHole)
+                        .environmentObject(shareTime)
+                        .environmentObject(login)
                         .onAppear(perform: {
                             offsetX = 80
                         })

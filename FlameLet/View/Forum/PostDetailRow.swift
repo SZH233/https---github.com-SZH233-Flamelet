@@ -10,13 +10,13 @@ import SwiftUI
 
 struct PostDetailRow: View {
     var post:Post
+    @State var offsetX: CGFloat = 20
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(post.content)
                     .font(.headline)
                     .multilineTextAlignment(.leading)
-                    .lineLimit(3)
                     .padding(.horizontal, 20.0)
             Spacer()
             HStack {
@@ -43,7 +43,7 @@ struct PostDetailRow: View {
                     .offset(x: -10)
             }
         }
-        .frame(width: 350, height: 160, alignment: .center)
+        .frame(width: 350, height: CGFloat(140 + offsetX * CGFloat(ceil(Float(post.content.count)/Float(30)))), alignment: .center)
         .padding(.horizontal, 15)
         .padding(.bottom, 15)
         .padding(.top, 5)
