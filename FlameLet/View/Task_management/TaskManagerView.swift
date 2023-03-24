@@ -1,0 +1,104 @@
+//
+//  TaskManagerView.swift
+//  DouBanDemo
+//
+//  Created by Keyu LI on 26/9/2022.
+//
+
+import SwiftUI
+
+struct TaskManagerView: View {
+    @StateObject var taskManager = TaskManager()
+    @StateObject var projectManager = ProjectManager()
+
+    @State var currentDate:Date = Date()
+    @State var showCalendar:Bool = false
+    var body: some View {
+        ZStack{
+            VStack{
+                Spacer()
+                ZStack{
+                    TaskWithFlemateView(currentDate: $currentDate)
+                        .environmentObject(taskManager)
+                        .environmentObject(projectManager)
+//                        .offset(y:60)
+                    
+                    Button{
+                        showCalendar.toggle()
+                    }label: {
+                        Label("Add Task",systemImage: "plus.circle")
+                            .font(.body.bold())
+                            .padding(6)
+                            .background(.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                    }
+                    .offset(y:125)
+                
+                }
+      
+                Spacer()
+                HStack{
+                    Spacer()
+                    TaskAchievementsView()
+                        .environmentObject(taskManager)
+                        .environmentObject(projectManager)
+                        .offset(y:-30)
+                    
+                    Spacer()
+                }
+
+                Spacer()
+                
+                HStack{
+                    Spacer()
+                    VStack{
+                        HStack{
+                            Text("Calendar")
+                                .font(.title2)
+                                .frame(maxWidth:.infinity,alignment: .leading)
+                                .padding(.leading,15)
+                                
+                            
+                            Image(systemName: "chevron.right")
+                                .frame(width:60,alignment: .trailing)
+                                .padding(.trailing,15)
+                                .onTapGesture {
+                                    showCalendar.toggle()
+                                }
+                        }
+                        .offset(y:-20)
+                        
+                        
+                        Text("Looking back at previous achievements.")
+                        
+                    }
+                    .frame(width: .infinity, height: 100, alignment: .leading)
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(.gray, lineWidth:2))
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+                
+            }
+            
+            
+//                .offset(y:400)
+            
+            if(showCalendar){
+                Color.white.edgesIgnoringSafeArea(.all)
+                CalendarAddTaskView(currentDate: $currentDate)
+                    .environmentObject(taskManager)
+                    .environmentObject(projectManager)
+            }
+        }
+     
+    }
+}
+
+struct TaskManagerView_Previews: PreviewProvider {
+    static var previews: some View {
+        TaskManagerView()
+    }
+}
